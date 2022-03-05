@@ -91,6 +91,7 @@ def load_fictrac(path, ball_radius=5, fps=100, columns=(5, 7, 6), inversions=(-1
     data["delta_rot_forward"] = dat_table[:, columns[0]] * ball_radius * fps * inversions[0]
     data["delta_rot_side"] = dat_table[:, columns[1]] * ball_radius * fps * inversions[0]
     data["delta_rot_turn"] = dat_table[:, columns[2]] / 2 / np.pi * 360 * fps * -1
+    data["heading"] = dat_table[:, 16]
 
     if not skip_integration:
         x, y = integrate_2d_pos(dat_table[:, columns[0]] * inversions[0], dat_table[:, columns[1]] * inversions[1], dat_table[:, columns[2]] * inversions[2])
